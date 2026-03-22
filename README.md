@@ -1,87 +1,123 @@
 # 🚀 Node.js + MySQL CRUD App (Dockerized)
 
-A full-stack CRUD application built with Node.js, Express, MySQL, and fully containerized using Docker and Docker Compose.
+![Node.js](https://img.shields.io/badge/Node.js-18-green)
+![Docker](https://img.shields.io/badge/Docker-Containerized-blue)
+![MySQL](https://img.shields.io/badge/MySQL-8-orange)
+![Status](https://img.shields.io/badge/Status-Running-success)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
 ---
 
-## 📌 Features
+## 📌 Project Overview
 
-- Create, Read, Update, Delete (CRUD) operations
-- Node.js + Express backend
-- MySQL database
-- EJS templating engine
-- Dockerized application
-- Multi-container setup using Docker Compose
+This is a **Dockerized full-stack CRUD application** built using:
 
----
-
-## 🧠 Architecture
-Browser → Node.js (Express) → MySQL
-
-
-Dockerized version:
-
-
-Browser → Node Container → MySQL Container
-
-
----
-
-## 🐳 Tech Stack
-
-- Node.js
-- Express.js
+- Node.js (Express)
 - MySQL
+- Docker & Docker Compose
+
+It demonstrates **real-world DevOps practices** such as:
+- Multi-container architecture
+- Service networking
+- Container orchestration
+- Debugging runtime issues
+
+---
+
+## 🧠 Architecture Diagram
+       ┌──────────────┐
+       │   Browser    │
+       └──────┬───────┘
+              │
+              ▼
+    ┌───────────────────┐
+    │  Node.js App      │
+    │ (Express Server)  │
+    └────────┬──────────┘
+             │
+             ▼
+    ┌───────────────────┐
+    │   MySQL Database  │
+    │   (Container)     │
+    └───────────────────┘
+
+    
+---
+
+## 🐳 Docker Architecture
+
+docker-compose
+│
+├── node-app (Port 3000)
+│
+└── mysql-db (Port 3307 → 3306)
+
+
+
+---
+
+## ⚙️ Tech Stack
+
+| Layer        | Technology        |
+|-------------|------------------|
+| Backend     | Node.js, Express |
+| Database    | MySQL            |
+| Template    | EJS              |
+| DevOps      | Docker, Compose  |
+
+---
+
+## 📁 Project Structure
+.
+├── src/
+│ ├── controllers/
+│ ├── routes/
+│ ├── views/
+│ ├── db.js
+│ ├── app.js
+│ └── index.js
+│
+├── Dockerfile
+├── docker-compose.yml
+├── package.json
+├── .gitignore
+└── README.md
+
+
+
+---
+
+## 🚀 Getting Started
+
+### 🔧 Prerequisites
+
 - Docker
 - Docker Compose
-- EJS
 
 ---
 
-## ⚙️ Setup & Run (Docker)
+### ▶️ Run the Application
 
-### 1️⃣ Clone repository
-
-
-git clone https://github.com/Rakesh171977/nodejs-docker-crud-app.git
-
-cd nodejs-docker-crud-app
-
-
----
-
-### 2️⃣ Run containers
-
-
+```bash
 docker-compose up --build
 
+```
 
----
-
-### 3️⃣ Access application
-
-
+🌐 Access App
 http://localhost:3000
 
 
----
+Database Setup 
 
-## 🗄️ Database Setup
-
-Run this command:
-
+Login to MySQL container:
 
 docker exec -it mysql-db mysql -u root -p
-
-
 Password:
 
 1234
 
+Run:
 
-Then:
-
-```sql
 USE database_links;
 
 CREATE TABLE customer (
@@ -92,12 +128,37 @@ CREATE TABLE customer (
 );
 
 
-```
+🔥 API Endpoints
+Method	Endpoint	Description
+GET	/	List customers
+POST	/add	Add customer
+GET	/update/:id	Edit page
+POST	/update/:id	Update customer
+GET	/delete/:id	Delete customer
 
-⚠️ Known Issues
-Database table must be created manually
-No retry mechanism if DB is not ready
-Running in development mode inside container
 
-🧑‍💻 Author
-   Rakesh Verma
+🐳 Docker Details
+Services
+Service	Description	Port
+node-app	Express server	3000
+mysql-db	MySQL database	3307
+
+
+⚠️ Challenges Faced
+❌ Database connection refused (container timing issue)
+❌ MySQL table not found
+❌ Port mismatch confusion (3000 vs 4000)
+❌ ESM import/export issues
+
+
+🛠️ Solutions Implemented
+✅ Fixed DB host using container name
+✅ Corrected MySQL port (3306 inside container)
+✅ Manual DB initialization
+✅ Debugged container logs
+✅ Fixed module exports
+
+
+📸 Screenshots
+<img width="1919" height="911" alt="Screenshot 2026-03-22 191108" src="https://github.com/user-attachments/assets/00e130e1-aa67-42ce-a3f7-5dfb648cf09b" />
+
