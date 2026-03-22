@@ -92,6 +92,8 @@ CREATE TABLE customer (
 );
 
 
+```
+
 ⚠️ Known Issues
 Database table must be created manually
 No retry mechanism if DB is not ready
